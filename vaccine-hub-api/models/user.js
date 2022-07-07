@@ -6,7 +6,21 @@ const bcrypt = require("bcrypt")
 
 
 class User{
+    static async makePublicUser(user){
+        return{
+            id: user.id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            location: user.location,
+            date: user.date
+
+
+        }
+    }
     static async login(credentials){
+
+
         //user should submit their emails and passwords
         //if any of these fields are missing, throw an error
         //look up the user in the db by email
@@ -33,6 +47,8 @@ class User{
 
 
     static async register(credentials){
+
+        
         //user should submit their email,pw,rsvp status, and #of guests
         //if any of these fields are missing throw an error 
         //make sure no user already exists in the system with that email
@@ -107,40 +123,5 @@ module.exports = User
 
 
 
-// class User {
 
-//     static async makePublicUser(user){
-//         return{
-//             id: user.id,
-//             first_name: user.first_name,
-//             last_name: user.last_name,
-//             email: user.email,
-//             location: user.location,
-//             date: user.date
-
-
-//         }
-//     }
-
-//     static async login(credentials){
-//         const requiredFields = ["email","password"]
-//         requiredFields.forEach(field => {
-//             if(!credentials.hasOwnProperty(field)){
-//                 throw new BadRequestError(`Missing ${field} in request body.`)
-//             }
-//         })
-
-//         const user = await User.fetchUserByEmail(credentials.email)
-
-//         if(user){
-//             const isValid = await bcrypt.compare(credentials.password, user.password);
-//             if(isValid){
-//                 return User.makePublicUser(user)
-//             }
-//         }
-
-        
-//         throw new UnauthorizedError("Invalid email/password combo")
-
-//     }
 
