@@ -1,5 +1,7 @@
 const express = require("express")
+const User = require("../models/user")
 const router = express.Router()
+
 
 router.post("/login", async(req,res,next)=>{
     try{
@@ -19,4 +21,4 @@ router.post("/register",async(req,res,next)=>{
     }
 })
 
-module.exports = user
+module.exports = router
